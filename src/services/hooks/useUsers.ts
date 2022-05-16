@@ -11,7 +11,7 @@ type User = {
 type GetUsersResponse = {
   totalCount: number;
   users: User[];
-}
+};
 
 export async function getUsers(page: number): Promise<GetUsersResponse> {
   const { data, headers } = await api.get("users", {
@@ -40,6 +40,6 @@ export async function getUsers(page: number): Promise<GetUsersResponse> {
 
 export function useUsers(page: number) {
   return useQuery(["users", page], () => getUsers(page), {
-    staleTime: 1000 * 5,
+    staleTime: 1000 * 60 * 10,
   });
 }
